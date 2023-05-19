@@ -15,10 +15,14 @@ test("Renders table name and header", async () => {
   expect(headerElement).toBeInTheDocument();
 });
 
-test("Renders 4th row from fetched data file", async () => {
+test("Renders data from mocked request", async () => {
   render(<App />);
   //External data source content test
   await waitFor(() => {
     expect(screen.getByText(/Sogn Studentby/i)).toBeInTheDocument();
+  });
+  await waitFor(() => {
+    const rows = screen.getAllByRole("row");
+    expect(rows).toHaveLength(5);
   });
 });
