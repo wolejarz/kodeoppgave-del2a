@@ -11,11 +11,14 @@ test("Renders table name and header", async () => {
   //Static content test
   const linkElement = screen.getByText(/OSLOBYSYKKEL/i);
   expect(linkElement).toBeInTheDocument();
+  const headerElement = screen.getByText(/Navn/i);
+  expect(headerElement).toBeInTheDocument();
 });
 
-test("Renders two stations with no available locks and two stations with no available bicycles", async () => {
+test("Renders 4th row from fetched data file", async () => {
   render(<App />);
-  //Dynamic content test
-  const station1 = screen.getByRole("heading");
-  expect(station1).toHaveTextContent("Aker Brygge 3 mot Fergene");
+  //External data source content test
+  await waitFor(() => {
+    expect(screen.getByText(/Sogn Studentby/i)).toBeInTheDocument();
+  });
 });
