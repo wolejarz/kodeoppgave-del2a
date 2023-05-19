@@ -57,6 +57,10 @@ afterAll(() => server.close());
 
 test("Renders two stations with no available locks and two stations with no available bicycles", () => {
   render(<App />);
+  //Static content test
   const linkElement = screen.getByText(/OSLOBYSYKKEL/i);
   expect(linkElement).toBeInTheDocument();
+  //Dynamic content test
+  const station1 = screen.getByText(/Stasjon 1/i);
+  expect(station1).toBeInTheDocument();
 });
